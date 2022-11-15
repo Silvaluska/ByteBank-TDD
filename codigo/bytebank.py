@@ -28,8 +28,16 @@ class Funcionario:
     def calcular_bonus(self):
         valor = self._salario * 0.1
         if valor > 1000:
-            valor = 0
+            raise Exception('Salário muito alto para receber bonus!!')
         return valor
+
+    def decrescimo_salario(self):
+        if self._verifica_diretor():
+            self._salario *= 0.9 
+
+    def _verifica_diretor(self):
+        sobrenomes = ['Bragança', 'Windsor', 'Bourbon', 'Yamato', 'Al Saud', 'Khan', 'Tudor', 'Ptolomeu']
+        return self._salario >= 100000 and self.sobrenome() in sobrenomes
 
     def __str__(self):
         return f'Funcionario({self._nome}, {self._data_nascimento}, {self._salario})'
